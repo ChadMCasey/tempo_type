@@ -17,10 +17,13 @@
 }
 
 .reset:hover {
-  animation: rotate 0.8s forwards;
   background-image: url("../assets/restart-hover.svg");
 }
 
 .reset:active {
   opacity: 0.7;
+}
+
+.reset_animation {
+  animation: rotate 0.8s forwards;
 }

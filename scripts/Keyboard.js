@@ -1,4 +1,4 @@
-import { keys } from "./constants.js";
+import { keys, validInputKeys } from "./constants.js";
 import Key from "./Key.js";
 
 export default class Keyboard {
@@ -8,7 +8,6 @@ export default class Keyboard {
   }
 
   createKeys() {
-    console.log(this.keyObjs);
     Array.from(keys).forEach((key) => {
       const keyText = key.querySelector(".key__text").textContent.trim();
       this.keyObjs[keyText] = new Key(key);
@@ -16,10 +15,9 @@ export default class Keyboard {
   }
 
   triggerKey(correctKey, key) {
-    if (key === " ") {
-      key = "space";
-    }
-    console.log(key);
+    if (key === " ") key = "space";
+    if (!this.keyObjs[key]) return;
+
     this.keyObjs[key].triggerKey(correctKey, key);
   }
 }

@@ -29,6 +29,10 @@ export default class Letter {
     this.letterElement.classList.remove("letter_correct");
   }
 
+  setSpaceCharacter() {
+    this.letterElement.classList.add("key_space_word");
+  }
+
   addCursor() {
     const cursor = this.getCursorTemplate();
     this.letterElement.append(cursor);

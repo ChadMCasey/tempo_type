@@ -17,6 +17,11 @@
   width: 240px;
 }
 
+.key_space_word {
+  display: inline-block;
+  width: 20px;
+}
+
 .key_correct {
   background-color: #211a23;
   color: white;
