@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.png" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap"
+    />
+    <script type="module" src="./scripts/constants.js" defer></script>
+    <script type="module" src="./scripts/Input.js" defer></script>
+    <script type="module" src="./scripts/main.js" defer></script>
+    <title>Tempotype</title>
+  </head>
+  <body class="body">
+    <div class="page">
+      <header class="header page__header">
+        <nav class="nav">
+          <div class="nav__logo">
+            <img
+              class="nav__keyboard"
+              src="assets/keyboard.svg"
+              alt="Keyboard Icon"
+            />
+            <h1 class="nav__name">Tempotype</h1>
+          </div>
+
+          <div class="nav__link-section">
+            <p class="nav__link nav__link_leaderboard">leaderboard</p>
+            <p class="nav__link nav__link_about">about</p>
+            <button class="nav__link nav__settings"></button>
+            <button class="nav__link nav__login">Login</button>
+          </div>
+        </nav>
+      </header>
+      <main class="main page__main">
+        <section class="tiles">
+          <div class="tile tile_wpm">
+            <h2 class="tile__heading">Words Per Minute</h2>
+            <span class="tile__value">42</span>
+          </div>
+          <div class="tile tile_accuracy">
+            <h2 class="tile__heading">Accuracy</h2>
+            <span class="tile__value">87%</span>
+          </div>
+          <div class="tile tile_time-remaining">
+            <h2 class="tile__heading">Time Remaining</h2>
+            <span class="tile__value">52s</span>
+          </div>
+        </section>
+        <section class="text-area">
+          <input type="text" class="text-area__input" />
+          <div class="text-area__wrapper">
+            <div class="text-area__overlay"></div>
+            <div class="text-area__text"></div>
+          </div>
+        </section>
+        <section class="keyboard-area">
+          <div class="keyboard">
+            <div class="keyboard__row">
+              <div id="q" class="key"><span class="key__text">q</span></div>
+              <div id="w" class="key"><span class="key__text">w</span></div>
+              <div id="e" class="key"><span class="key__text">e</span></div>
+              <div id="r" class="key"><span class="key__text">r</span></div>
+              <div id="t" class="key"><span class="key__text">t</span></div>
+              <div id="y" class="key"><span class="key__text">y</span></div>
+              <div id="u" class="key"><span class="key__text">u</span></div>
+              <div id="i" class="key"><span class="key__text">i</span></div>
+              <div id="o" class="key"><span class="key__text">o</span></div>
+              <div id="p" class="key"><span class="key__text">p</span></div>
+              <div id="[" class="key"><span class="key__text">[</span></div>
+              <div id="]" class="key"><span class="key__text">]</span></div>
+            </div>
+            <div class="keyboard__row">
+              <div id="q" class="key"><span class="key__text">a</span></div>
+              <div id="s" class="key"><span class="key__text">s</span></div>
+              <div id="d" class="key"><span class="key__text">d</span></div>
+              <div id="f" class="key"><span class="key__text">f</span></div>
+              <div id="g" class="key"><span class="key__text">g</span></div>
+              <div id="h" class="key"><span class="key__text">h</span></div>
+              <div id="j" class="key"><span class="key__text">j</span></div>
+              <div id="k" class="key"><span class="key__text">k</span></div>
+              <div id="l" class="key"><span class="key__text">l</span></div>
+              <div id=";" class="key"><span class="key__text">;</span></div>
+              <div id="'" class="key"><span class="key__text">'</span></div>
+            </div>
+            <div class="keyboard__row">
+              <div id="z" class="key"><span class="key__text">z</span></div>
+              <div id="x" class="key"><span class="key__text">x</span></div>
+              <div id="c" class="key"><span class="key__text">c</span></div>
+              <div id="v" class="key"><span class="key__text">v</span></div>
+              <div id="b" class="key"><span class="key__text">b</span></div>
+              <div id="n" class="key"><span class="key__text">n</span></div>
+              <div id="m" class="key"><span class="key__text">m</span></div>
+              <div id="," class="key"><span class="key__text">,</span></div>
+              <div id="." class="key"><span class="key__text">.</span></div>
+              <div id="/" class="key"><span class="key__text">/</span></div>
+            </div>
+            <div class="keyboard__row">
+              <div id="space" class="key key_space">
+                <span class="key__text">space</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <button class="reset footer__reset"></button>
+      </footer>
+    </div>
+
+    <template id="word-template">
+      <div class="word"></div>
+    </template>
+
+    <template id="letter-template">
+      <span class="letter"></span>
+    </template>
+
+    <template id="cursor-template">
+      <span class="letter__cursor"></span>
+    </template>
+  </body>
+</html>

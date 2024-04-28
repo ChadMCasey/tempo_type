@@ -1,0 +1,77 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
+  color: white;
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav__keyboard {
+  height: 50px;
+  width: 45px;
+}
+
+.nav__name {
+  font-size: 30px;
+  margin: 0px;
+}
+
+.nav__link {
+  margin: 0px;
+  transition: color 0.25s ease-in-out;
+}
+
+.nav__link:hover {
+  color: #211a23;
+  cursor: pointer;
+}
+
+.nav__link-section {
+  display: flex;
+  align-items: center;
+}
+
+.nav__link_leaderboard {
+  margin-right: 40px;
+}
+
+.nav__link_about {
+  margin-right: 90px;
+}
+
+.nav__settings {
+  width: 25px;
+  height: 25px;
+  margin-right: 30px;
+  border: none;
+  background-color: transparent;
+  background-image: url("../assets/settings.svg");
+  transition: background-image 0.25s ease-in-out, transform 0.25s ease-in-out;
+}
+
+.nav__settings:hover {
+  cursor: pointer;
+  transform: rotate(45deg);
+  background-image: url("../assets/settings-hover.svg");
+}
+
+.nav__login {
+  width: 120px;
+  height: 38px;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: inherit;
+  color: #000;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+}
+.nav__login:hover {
+  color: white;
+  background-color: #211a23;
+}

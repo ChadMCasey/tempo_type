@@ -1,0 +1,6 @@
+.word {
+  display: inline-block;
+  margin: 5px 0px;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
+}

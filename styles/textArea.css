@@ -1,0 +1,28 @@
+.text-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.text-area__input {
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+  opacity: 0;
+}
+
+.text-area__text {
+  padding: 25px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+.text-area__wrapper {
+  flex-basis: 900px;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 15px;
+  transition: height 2s ease-in-out;
+}

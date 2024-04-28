@@ -1,0 +1,37 @@
+@keyframes cursorPulse {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 25%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.letter {
+  font-size: inherit;
+  display: inline-block;
+  box-sizing: border-box;
+  color: rgba(33, 26, 35, 0.45);
+  position: relative;
+}
+
+.letter_correct {
+  color: #211a23;
+}
+
+.letter_incorrect {
+  color: #ff1e00;
+}
+
+.letter__cursor {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  height: 100%;
+  width: 2px;
+  background-color: rgba(33, 26, 35, 0.7);
+  animation: cursorPulse 1s ease-in-out infinite forwards;
+}

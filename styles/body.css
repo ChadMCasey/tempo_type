@@ -1,0 +1,11 @@
+.body {
+  min-height: 100vh;
+  background-image: linear-gradient(
+    40deg,
+    rgba(255, 154, 0, 1) 10%,
+    rgba(255, 30, 0, 1) 100%
+  );
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}

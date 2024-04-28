@@ -1,0 +1,29 @@
+.tiles {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+}
+
+.tile {
+  flex-basis: 280px;
+  box-sizing: border-box;
+  height: 80px;
+  border-radius: 15px;
+  padding: 34px 30px 34px 30px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
+}
+
+.tile__heading {
+  font-size: 16px;
+  margin: 0px;
+}
+
+.tile__value {
+  font-size: 30px;
+}

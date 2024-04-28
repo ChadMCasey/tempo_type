@@ -1,0 +1,30 @@
+.key {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Comfortaa", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
+    transform 0.1s ease-in-out;
+}
+
+.key_space {
+  width: 240px;
+}
+
+.key_correct {
+  background-color: #211a23;
+  color: white;
+  transform: scale(0.9);
+}
+
+.key_incorrect {
+  background-color: #ff1e00;
+  color: white;
+  transform: scale(0.9);
+}
