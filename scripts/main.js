@@ -17,16 +17,21 @@ import {
   timeRemainingTile,
 } from "./constants.js";
 
+// create our tile classes
+const wpmTileObj = new WPMTile(wpmTile);
+const accuracyTileObj = new AccuracyTile(accuracyTile);
+const timeRemainingTileObj = new TimeRemainingTile(timeRemainingTile);
+
 // create keyboard
 const keyboardObj = new Keyboard();
 
 // create input handling class
-const inputObj = new Input(keyboardObj);
+const inputObj = new Input(
+  keyboardObj,
+  wpmTileObj,
+  accuracyTileObj,
+  timeRemainingTileObj
+);
 
-// reset button can reset our text
+// create reset button
 const resetObj = new Reset(resetButton, inputObj);
-
-// create our tile classes
-const wpmTileObj = new WPMTile(wpmTile, inputObj);
-const accuracyTileObj = new AccuracyTile(accuracyTile, inputObj);
-const timeRemainingTileObj = new TimeRemainingTile(timeRemainingTile, inputObj);

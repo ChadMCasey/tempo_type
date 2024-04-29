@@ -2,8 +2,8 @@ import { timeRemainingTile } from "./constants.js";
 import Tile from "./Tile.js";
 
 export default class TimeRemainingTile extends Tile {
-  constructor(tile, inputObj) {
-    super(tile, inputObj);
+  constructor(tile) {
+    super(tile);
   }
 
   update() {

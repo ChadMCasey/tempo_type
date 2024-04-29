@@ -9,7 +9,7 @@ import Word from "./Word.js";
 import Letter from "./Letter.js";
 
 export default class Input {
-  constructor(keyboard) {
+  constructor(keyboardObj, wpmObj, accuracyObj, timeRemainingObj) {
     this.textAreaInput = textAreaInput;
     this.textAreaText = textAreaText;
 
@@ -19,9 +19,16 @@ export default class Input {
     this.currentLetterIndex = 0;
     this.currentWordIndex = 0;
 
-    this.time = 0;
+    this.correctKeys = 0;
+    this.incorrectKeys = 0;
 
-    this.Keyboard = keyboard;
+    this.correctWords = 0;
+
+    this.Keyboard = keyboardObj;
+
+    this.Accuracy = accuracyObj;
+    this.WPM = wpmObj;
+    this.timeRemaining = timeRemainingObj;
 
     this.setEventListeners(); // set listeners
     this.populateText(); // set default paragraph
@@ -29,9 +36,13 @@ export default class Input {
 
   setEventListeners() {
     this.textAreaText.addEventListener("click", () => this.focusInput());
-    this.textAreaInput.addEventListener("keydown", (e) =>
-      this.checkInput(e.key)
-    );
+    this.textAreaInput.addEventListener("keydown", (e) => {
+      this.checkInput(e.key);
+
+      this.Accuracy.update();
+      this.WPM.update();
+      this.timeRemaining.update();
+    });
   }
 
   reset() {
@@ -48,6 +59,7 @@ export default class Input {
 
   populateText() {
     let paragraph = getRandomParagraph();
+    let time = 0;
 
     paragraph.forEach((word) => {
       const wordObj = new Word(word);
@@ -63,13 +75,12 @@ export default class Input {
 
       setTimeout(() => {
         this.textAreaText.append(wordObj.wordElement);
-      }, this.time);
-      this.time += 30;
+      }, time);
+      time += 30;
     });
 
     this.currentLetterObj = this.letterObjs[0];
     this.currentLetterObj.addCursor();
-    this.time = 0;
   }
 
   checkInput(key) {
@@ -86,9 +97,11 @@ export default class Input {
     if (key === this.currentLetterObj.letter) {
       this.currentLetterObj.setCorrect();
       this.Keyboard.triggerKey(true, key.toLowerCase());
+      this.correctKeys++;
     } else {
       this.currentLetterObj.setIncorrect();
       this.Keyboard.triggerKey(false, key.toLowerCase());
+      this.incorrectKeys++;
     }
 
     // move to next key
