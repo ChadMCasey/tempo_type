@@ -1,35 +1,29 @@
 .key {
   width: 40px;
   height: 40px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Comfortaa", sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
-    transform 0.1s ease-in-out;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  transition: background-color 0.1s ease-out, color 0.1s ease-out,
+    transform 0.1s ease-out;
 }
 
 .key_space {
   width: 240px;
 }
 
-.key_space_word {
-  display: inline-block;
-  width: 20px;
-}
-
 .key_correct {
-  background-color: #211a23;
+  background-color: rgb(33, 26, 35, 0.7);
   color: white;
   transform: scale(0.9);
 }
 
 .key_incorrect {
-  background-color: #ff1e00;
+  background-color: rgba(255, 154, 0, 0.7);
   color: white;
   transform: scale(0.9);
 }

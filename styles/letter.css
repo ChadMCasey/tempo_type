@@ -16,6 +16,7 @@
   box-sizing: border-box;
   color: rgba(33, 26, 35, 0.45);
   position: relative;
+  white-space: pre;
 }
 
 .letter_correct {
@@ -23,7 +24,7 @@
 }
 
 .letter_incorrect {
-  color: #ff1e00;
+  color: #ff9a00;
 }
 
 .letter__cursor {

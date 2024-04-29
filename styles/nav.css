@@ -1,8 +1,8 @@
 .nav {
   display: flex;
   justify-content: space-between;
-  font-family: "Comfortaa", sans-serif;
-  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
   color: white;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .nav__link:hover {
-  color: #211a23;
+  color: rgb(33, 26, 35, 0.7);
   cursor: pointer;
 }
 
@@ -52,12 +52,14 @@
   border: none;
   background-color: transparent;
   background-image: url("../assets/settings.svg");
-  transition: background-image 0.25s ease-in-out, transform 0.25s ease-in-out;
+  transition: background-image 0.25s ease-in-out, transform 0.25s ease-in-out,
+    opacity 0.25s ease-in-out;
 }
 
 .nav__settings:hover {
   cursor: pointer;
   transform: rotate(45deg);
+  opacity: 0.7;
   background-image: url("../assets/settings-hover.svg");
 }
 
@@ -73,5 +75,5 @@
 }
 .nav__login:hover {
   color: white;
-  background-color: #211a23;
+  background-color: rgb(33, 26, 35, 0.7);
 }

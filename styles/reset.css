@@ -14,6 +14,7 @@
   border: none;
   background-image: url("../assets/restart.svg");
   transition: background-image 0.25s ease-in;
+  opacity: 0.9;
 }
 
 .reset:hover {

@@ -16,8 +16,8 @@ export default class Input {
     this.wordObjs = [];
     this.letterObjs = [];
 
-    this.currentLetter = null;
     this.currentLetterIndex = 0;
+    this.currentWordIndex = 0;
 
     this.time = 0;
 
@@ -35,7 +35,6 @@ export default class Input {
   }
 
   reset() {
-    this.currentLetter = null;
     this.currentLetterIndex = 0;
     this.wordObjs = [];
     this.letterObjs = [];
@@ -52,17 +51,13 @@ export default class Input {
 
     paragraph.forEach((word) => {
       const wordObj = new Word(word);
-      const letters = [...word];
+      const letters = [...word, " "];
 
       letters.forEach((letter) => {
         const letterObj = new Letter(letter);
         wordObj.insertLetter(letterObj);
         this.letterObjs.push(letterObj);
       });
-
-      const spaceLetter = new Letter(" ");
-      spaceLetter.setSpaceCharacter();
-      this.letterObjs.push(spaceLetter);
 
       this.wordObjs.push(wordObj);
 
@@ -78,8 +73,16 @@ export default class Input {
   }
 
   checkInput(key) {
+    // invalid key input
     if (ingoredkeys.includes(key)) return;
 
+    // backspace input
+    if (key === "Backspace") {
+      this.setLastKey();
+      return;
+    }
+
+    // valid key input
     if (key === this.currentLetterObj.letter) {
       this.currentLetterObj.setCorrect();
       this.Keyboard.triggerKey(true, key.toLowerCase());
@@ -87,13 +90,25 @@ export default class Input {
       this.currentLetterObj.setIncorrect();
       this.Keyboard.triggerKey(false, key.toLowerCase());
     }
+
+    // move to next key
     this.setNextKey();
   }
 
   setNextKey() {
     this.currentLetterObj.removeCursor();
-    this.currentLetterIndex += 1;
+    this.currentLetterIndex++;
     this.currentLetterObj = this.letterObjs[this.currentLetterIndex]; // update letter
     this.currentLetterObj.addCursor();
+  }
+
+  setLastKey() {
+    if (this.currentLetterIndex > 0) {
+      this.currentLetterObj.removeCursor();
+      this.currentLetterIndex--;
+      this.currentLetterObj = this.letterObjs[this.currentLetterIndex];
+      this.currentLetterObj.addCursor();
+      this.currentLetterObj.setUntyped();
+    }
   }
 }
