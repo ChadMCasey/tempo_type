@@ -5,7 +5,7 @@ import Word from "./Word.js";
 import Letter from "./Letter.js";
 import AccuracyTile from "./AccuracyTile.js";
 import WPMTile from "./WpmTile.js ";
-import TimeRemainingTile from "./TimeRemainingTile.js";
+import TimeTile from "./TimeTile.js";
 
 import {
   validInputKeys,
@@ -14,13 +14,13 @@ import {
   paragraphs,
   wpmTile,
   accuracyTile,
-  timeRemainingTile,
+  timeTile,
 } from "./constants.js";
 
 // create our tile classes
 const wpmTileObj = new WPMTile(wpmTile);
 const accuracyTileObj = new AccuracyTile(accuracyTile);
-const timeRemainingTileObj = new TimeRemainingTile(timeRemainingTile);
+const timeTileObj = new TimeTile(timeTile);
 
 // create keyboard
 const keyboardObj = new Keyboard();
@@ -30,7 +30,7 @@ const inputObj = new Input(
   keyboardObj,
   wpmTileObj,
   accuracyTileObj,
-  timeRemainingTileObj
+  timeTileObj
 );
 
 // create reset button

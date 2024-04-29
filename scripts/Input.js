@@ -16,16 +16,20 @@ export default class Input {
     this.wordObjs = [];
     this.letterObjs = [];
 
+    this.isRunning = false;
+    this.isReset = true;
+    this.time = null;
+
     this.currentLetterIndex = 0;
-    this.currentWordIndex = 0;
 
     this.correctKeys = 0;
     this.incorrectKeys = 0;
-
     this.correctWords = 0;
 
+    //keybooard
     this.Keyboard = keyboardObj;
 
+    // tiles
     this.Accuracy = accuracyObj;
     this.WPM = wpmObj;
     this.timeRemaining = timeRemainingObj;
@@ -37,20 +41,39 @@ export default class Input {
   setEventListeners() {
     this.textAreaText.addEventListener("click", () => this.focusInput());
     this.textAreaInput.addEventListener("keydown", (e) => {
-      this.checkInput(e.key);
-
-      this.Accuracy.update();
-      this.WPM.update();
-      this.timeRemaining.update();
+      this.handleKeydown(e.key);
     });
   }
 
   reset() {
     this.currentLetterIndex = 0;
+
+    this.isRunning = false;
+    this.isReset = true;
+
+    this.startTime = null;
+    this.endTime = null;
+
+    this.correctKeys = 0;
+    this.incorrectKeys = 0;
+    this.correctWords = 0;
+
     this.wordObjs = [];
     this.letterObjs = [];
+
     this.textAreaText.innerHTML = "";
     this.populateText();
+  }
+
+  start() {
+    this.isRunning = true;
+    this.isReset = false;
+    this.startTime = new Date();
+  }
+
+  stop() {
+    this.isRunning = false;
+    this.endTime = new Date();
   }
 
   focusInput() {
@@ -76,11 +99,32 @@ export default class Input {
       setTimeout(() => {
         this.textAreaText.append(wordObj.wordElement);
       }, time);
-      time += 30;
+      time += 10;
     });
 
     this.currentLetterObj = this.letterObjs[0];
     this.currentLetterObj.addCursor();
+  }
+
+  handleKeydown(key) {
+    if (!this.isRunning && this.isReset) {
+      this.start();
+    }
+
+    if (
+      this.isRunning &&
+      this.currentLetterIndex < this.letterObjs.length - 1
+    ) {
+      this.checkInput(key);
+    }
+
+    if (
+      this.isRunning &&
+      this.currentLetterIndex === this.letterObjs.length - 1
+    ) {
+      this.stop();
+      this.isRunning = false;
+    }
   }
 
   checkInput(key) {

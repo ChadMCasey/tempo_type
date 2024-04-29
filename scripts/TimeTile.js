@@ -1,7 +1,6 @@
-import { timeRemainingTile } from "./constants.js";
 import Tile from "./Tile.js";
 
-export default class TimeRemainingTile extends Tile {
+export default class TimeTile extends Tile {
   constructor(tile) {
     super(tile);
   }

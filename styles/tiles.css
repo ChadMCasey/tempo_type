@@ -3,12 +3,13 @@
   display: flex;
   justify-content: center;
   column-gap: 30px;
+  visibility: hidden;
 }
 
 .tile {
   flex-basis: 280px;
   box-sizing: border-box;
-  height: 80px;
+  height: 60px;
   border-radius: 15px;
   padding: 34px 30px 34px 30px;
   background-color: rgba(255, 255, 255, 0.9);
