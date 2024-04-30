@@ -212,14 +212,14 @@ export default class Input {
     let accuracy = this.calculateAccuracy();
     let time = Math.round(this.calculateTimeTaken(), 1) + "s";
 
-    this.WPM.displayResult(WPM);
-    this.Accuracy.displayResult(accuracy);
-    this.Time.displayResult(time);
+    this.WPM.displayResult(WPM, 0);
+    this.Accuracy.displayResult(accuracy, 20);
+    this.Time.displayResult(time, 40);
   }
 
   hideResults() {
-    this.WPM.hideResults();
-    this.Accuracy.hideResults();
-    this.Time.hideResults();
+    this.WPM.hideResult(40);
+    this.Accuracy.hideResult(20);
+    this.Time.hideResult(0);
   }
 }

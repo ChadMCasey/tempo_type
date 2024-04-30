@@ -5,13 +5,16 @@ export default class Tile {
     this.tileValueElement = tileElement.querySelector(".tile__value");
   }
 
-  displayResult(result) {
-    this.tileElement.classList.add("tile_visible");
+  displayResult(result, timeout) {
+    setTimeout(() => this.tileElement.classList.add("tile_visible"), timeout); // 20
     this.tileValueElement.textContent = result;
   }
 
-  hideResults() {
-    this.tileElement.classList.remove("tile_visible");
+  hideResult(timeout) {
+    setTimeout(
+      () => this.tileElement.classList.remove("tile_visible"),
+      timeout
+    );
     this.tileValueElement.textContent = "";
   }
 }

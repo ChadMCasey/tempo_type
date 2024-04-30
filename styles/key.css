@@ -23,7 +23,8 @@
 }
 
 .key_incorrect {
-  background-color: rgba(255, 154, 0, 0.7);
+  background-color: #4076e0;
+
   color: white;
   transform: scale(0.9);
 }
