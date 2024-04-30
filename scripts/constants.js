@@ -24,6 +24,8 @@ const validInputKeys =
 
 const ingoredkeys = ["Shift", "CapsLock"];
 
+const punctuationOrSpace = ",.; ";
+
 // They have thick fur and a layer of fat to keep them warm in freezing temperatures. Polar bears are great swimmers and can travel long distances in search of food, like seals. They have strong claws and sharp teeth to catch their prey. Sadly, polar bears are facing challenges because of climate change, which is melting the ice they need to hunt and live on.
 const paragraphs = [
   `Polar bears are big, white bears that live in the cold parts of the world, like the North Pole.`,
@@ -49,4 +51,5 @@ export {
   paragraphs,
   ingoredkeys,
   keys,
+  punctuationOrSpace,
 };

@@ -3,9 +3,7 @@ import Keyboard from "./Keyboard.js";
 import Reset from "./Reset.js";
 import Word from "./Word.js";
 import Letter from "./Letter.js";
-import AccuracyTile from "./AccuracyTile.js";
-import WPMTile from "./WpmTile.js ";
-import TimeTile from "./TimeTile.js";
+import Tile from "./Tile.js";
 
 import {
   validInputKeys,
@@ -18,9 +16,9 @@ import {
 } from "./constants.js";
 
 // create our tile classes
-const wpmTileObj = new WPMTile(wpmTile);
-const accuracyTileObj = new AccuracyTile(accuracyTile);
-const timeTileObj = new TimeTile(timeTile);
+const wpmTileObj = new Tile(wpmTile);
+const accuracyTileObj = new Tile(accuracyTile);
+const timeTileObj = new Tile(timeTile);
 
 // create keyboard
 const keyboardObj = new Keyboard();

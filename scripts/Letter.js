@@ -29,6 +29,10 @@ export default class Letter {
     this.letterElement.classList.remove("letter_correct");
   }
 
+  isCorrect() {
+    return this.letterElement.classList.contains("letter_correct");
+  }
+
   addCursor() {
     const cursor = this.getCursorTemplate();
     this.letterElement.append(cursor);

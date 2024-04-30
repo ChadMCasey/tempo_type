@@ -4,12 +4,13 @@ import {
   getRandomParagraph,
   keys,
   ingoredkeys,
+  punctuationOrSpace,
 } from "./constants.js";
 import Word from "./Word.js";
 import Letter from "./Letter.js";
 
 export default class Input {
-  constructor(keyboardObj, wpmObj, accuracyObj, timeRemainingObj) {
+  constructor(keyboardObj, wpmObj, accuracyObj, timeObj) {
     this.textAreaInput = textAreaInput;
     this.textAreaText = textAreaText;
 
@@ -22,9 +23,8 @@ export default class Input {
 
     this.currentLetterIndex = 0;
 
-    this.correctKeys = 0;
-    this.incorrectKeys = 0;
-    this.correctWords = 0;
+    this.correctKeysTyped = 0;
+    this.keysTyped = 0;
 
     //keybooard
     this.Keyboard = keyboardObj;
@@ -32,31 +32,33 @@ export default class Input {
     // tiles
     this.Accuracy = accuracyObj;
     this.WPM = wpmObj;
-    this.timeRemaining = timeRemainingObj;
+    this.Time = timeObj;
 
     this.setEventListeners(); // set listeners
     this.populateText(); // set default paragraph
   }
 
   setEventListeners() {
-    this.textAreaText.addEventListener("click", () => this.focusInput());
+    document.addEventListener("keydown", () => this.textAreaInput.focus());
+
     this.textAreaInput.addEventListener("keydown", (e) => {
       this.handleKeydown(e.key);
     });
   }
 
   reset() {
+    this.hideResults();
+
     this.currentLetterIndex = 0;
 
     this.isRunning = false;
-    this.isReset = true;
+    this.isDisplayingResults = false;
 
     this.startTime = null;
     this.endTime = null;
 
-    this.correctKeys = 0;
-    this.incorrectKeys = 0;
-    this.correctWords = 0;
+    this.correctKeysTyped = 0;
+    this.keysTyped = 0;
 
     this.wordObjs = [];
     this.letterObjs = [];
@@ -67,17 +69,15 @@ export default class Input {
 
   start() {
     this.isRunning = true;
-    this.isReset = false;
+    this.isDisplayingResults = false;
     this.startTime = new Date();
   }
 
   stop() {
     this.isRunning = false;
+    this.isDisplayingResults = true;
     this.endTime = new Date();
-  }
-
-  focusInput() {
-    this.textAreaInput.focus();
+    this.showResults();
   }
 
   populateText() {
@@ -99,7 +99,7 @@ export default class Input {
       setTimeout(() => {
         this.textAreaText.append(wordObj.wordElement);
       }, time);
-      time += 10;
+      time += 25;
     });
 
     this.currentLetterObj = this.letterObjs[0];
@@ -107,7 +107,7 @@ export default class Input {
   }
 
   handleKeydown(key) {
-    if (!this.isRunning && this.isReset) {
+    if (!this.isRunning && !this.isDisplayingResults) {
       this.start();
     }
 
@@ -123,7 +123,6 @@ export default class Input {
       this.currentLetterIndex === this.letterObjs.length - 1
     ) {
       this.stop();
-      this.isRunning = false;
     }
   }
 
@@ -137,15 +136,16 @@ export default class Input {
       return;
     }
 
+    this.keysTyped++;
+
     // valid key input
     if (key === this.currentLetterObj.letter) {
       this.currentLetterObj.setCorrect();
       this.Keyboard.triggerKey(true, key.toLowerCase());
-      this.correctKeys++;
+      this.correctKeysTyped++;
     } else {
       this.currentLetterObj.setIncorrect();
       this.Keyboard.triggerKey(false, key.toLowerCase());
-      this.incorrectKeys++;
     }
 
     // move to next key
@@ -167,5 +167,59 @@ export default class Input {
       this.currentLetterObj.addCursor();
       this.currentLetterObj.setUntyped();
     }
+  }
+
+  calculateWPM() {
+    let correctWords = 0;
+
+    for (let i = 0; i < this.wordObjs.length; i++) {
+      let typedCorrect = true;
+      let wordObj = this.wordObjs[i];
+      let letterObjs = wordObj.letterObjs;
+
+      for (let j = 0; j < letterObjs.length; j++) {
+        let letterObj = letterObjs[j];
+        let letter = letterObj.letter; // a b c
+
+        if (!punctuationOrSpace.includes(letter) && !letterObj.isCorrect()) {
+          typedCorrect = false;
+          break;
+        }
+      }
+
+      correctWords += typedCorrect;
+    }
+
+    let timeTakenSeconds = this.calculateTimeTaken();
+    let WPM = correctWords / (timeTakenSeconds / 60);
+    let WPMrounded = Math.round(WPM, 1);
+    return WPMrounded;
+  }
+
+  calculateAccuracy() {
+    let accuracyPercent = (this.correctKeysTyped / this.keysTyped) * 100;
+    let accuracyRounded = Math.round(accuracyPercent);
+    let accuracyFormatted = accuracyRounded + "%";
+    return accuracyFormatted;
+  }
+
+  calculateTimeTaken() {
+    return (this.endTime - this.startTime) / 1000;
+  }
+
+  showResults() {
+    let WPM = this.calculateWPM();
+    let accuracy = this.calculateAccuracy();
+    let time = Math.round(this.calculateTimeTaken(), 1) + "s";
+
+    this.WPM.displayResult(WPM);
+    this.Accuracy.displayResult(accuracy);
+    this.Time.displayResult(time);
+  }
+
+  hideResults() {
+    this.WPM.hideResults();
+    this.Accuracy.hideResults();
+    this.Time.hideResults();
   }
 }
