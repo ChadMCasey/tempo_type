@@ -6,7 +6,6 @@ const timeTile = document.querySelector(".tile_time-remaining");
 // text area
 const textAreaInput = document.querySelector(".text-area__input");
 const textAreaText = document.querySelector(".text-area__text");
-const textAreaOverlay = document.querySelector(".text-area__overlay");
 
 // restart
 const resetButton = document.querySelector(".reset");
@@ -48,7 +47,6 @@ export {
   timeTile,
   textAreaInput,
   textAreaText,
-  textAreaOverlay,
   getRandomParagraph,
   validInputKeys,
   resetButton,

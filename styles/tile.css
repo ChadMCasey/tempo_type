@@ -1,0 +1,36 @@
+.tile {
+  flex-basis: 280px;
+  box-sizing: border-box;
+  height: 60px;
+  border-radius: 15px;
+  padding: 34px 30px 34px 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+
+  visibility: hidden;
+  opacity: 0;
+  scale: 0.9;
+  transform: translateY(20px);
+  transition: all 0.2s;
+}
+
+.tile_visible {
+  visibility: visible;
+  opacity: 1;
+  scale: 1;
+  transform: translateY(0);
+}
+
+.tile__heading {
+  font-size: 16px;
+  margin: 0px;
+  font-weight: 600;
+}
+
+.tile__value {
+  font-size: 30px;
+}
