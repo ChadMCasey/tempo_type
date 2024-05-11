@@ -213,13 +213,13 @@ export default class Input {
     let time = Math.round(this.calculateTimeTaken(), 1) + "s";
 
     this.WPM.displayResult(WPM, 0);
-    this.Accuracy.displayResult(accuracy, 20);
-    this.Time.displayResult(time, 40);
+    this.Accuracy.displayResult(accuracy, 50);
+    this.Time.displayResult(time, 100);
   }
 
   hideResults() {
-    this.WPM.hideResult(40);
-    this.Accuracy.hideResult(20);
+    this.WPM.hideResult(100);
+    this.Accuracy.hideResult(50);
     this.Time.hideResult(0);
   }
 }
